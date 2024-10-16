@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lame Ass Calculator</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .outter {
+            display: flex;
+            background-color: rgb(195, 198, 201);
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .calc {
+            display: grid;
+            background-color: black;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 5px;
+            gap: 5px;
+            min-width: 430px;
+            min-height: 530px;
+        }
+        button {
+            background-color: aquamarine;
+            text-align: center;
+            border-radius: 5px;
+            font-size: large;
+        }
+        #display{
+            grid-column: 1 / -1;
+            border: 2px solid aquamarine;
+            min-height: 30px;
+        }
+        #zero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="outter">   
+        <div class="calc">
+            <div id="display"></div>
+            <div></div>
+            <div></div>
+            <button>AC</button>
+            <button>+</button>
+            <button>9</button>
+            <button>8</button>
+            <button>7</button>
+            <button>-</button>
+            <button>6</button>
+            <button>5</button>
+            <button>4</button>
+            <button>*</button>
+            <button>3</button>
+            <button>2</button>
+            <button>1</button>
+            <button>/</button>
+            <button id="zero">0</button>
+            <button>.</button>
+            <button>=</button>
+        </div>
+    </div>
+    <script>
+
+    </script>
+    
+</body>
+</html>
