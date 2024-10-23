@@ -3,71 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lame Ass Calculator</title>
+    <title>Calc</title>
     <style>
         body {
-            margin: 0;
-        }
-        .outter {
             display: flex;
-            background-color: rgb(195, 198, 201);
-            height: 100vh;
             justify-content: center;
             align-items: center;
+            background: orange;
+            height: 100vh;
         }
-        .calc {
-            display: grid;
-            background-color: black;
-            grid-template-columns: repeat(4, 1fr);
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid black;
             padding: 5px;
-            gap: 5px;
-            min-width: 430px;
-            min-height: 530px;
+            background: black;
+        }
+        .buttons {
+            border: 2px solid black;
+            display: flex;
+            width: 292px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: rgb(59, 59, 59);
+
+      
         }
         button {
-            background-color: aquamarine;
-            text-align: center;
-            border-radius: 5px;
-            font-size: large;
+            width: 70px;
+            height: 70px;
+            margin: 1px;
+            font-size: 24px;
         }
-        #display{
-            grid-column: 1 / -1;
-            border: 2px solid aquamarine;
-            min-height: 30px;
-        }
-        #zero {
-            grid-column: span 2;
+        .display {
+            margin-bottom: 10px;
+            border: 2px solid black;
+            width: 292px;
+            height: 60px;
+            background-color: white;
         }
     </style>
 </head>
 <body>
-    <div class="outter">   
-        <div class="calc">
-            <div id="display"></div>
-            <div></div>
-            <div></div>
-            <button>AC</button>
-            <button>+</button>
-            <button>9</button>
-            <button>8</button>
+    <div class="container">
+        <div class="display"></div>
+        <div class="buttons">
             <button>7</button>
-            <button>-</button>
-            <button>6</button>
-            <button>5</button>
+            <button>8</button>
+            <button>9</button>
+            <button>+</button>
             <button>4</button>
-            <button>*</button>
-            <button>3</button>
-            <button>2</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
             <button>1</button>
-            <button>/</button>
-            <button id="zero">0</button>
-            <button>.</button>
+            <button>2</button>
+            <button>3</button>
+            <button>*</button>
+            <button>0</button>
+            <button>AC</button>
             <button>=</button>
+            <button>/</button>
         </div>
     </div>
     <script>
-
+        
     </script>
-    
 </body>
 </html>
