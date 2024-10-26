@@ -9,7 +9,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: orange;
+            background: rgb(141, 93, 4);
             height: 100vh;
         }
         .container {
@@ -38,13 +38,23 @@
             border-radius: 15px;
         }
         .display {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             margin-bottom: 10px;
             border: 2px solid black;
             width: 292px;
             height: 60px;
             background-color: white;
             font-size: 40px;
-            text-align: right;
+            padding-right: 5px;
+            box-sizing: border-box;
+        }
+        .operands {
+            background-color: rgb(199, 112, 14);
+        }
+        .equality {
+            background-color: aquamarine;
         }
     </style>
 </head>
@@ -74,11 +84,14 @@
         let operator1 = ""
         let operator2 = ""
         let operand = ""
+        let def = "0"
+        
        
         const display = document.querySelector(".display")
         function updateDisp(value) {
             display.textContent = value;
         }
+        updateDisp(def)
 
         document.querySelectorAll(".number").forEach(button => {
             button.addEventListener("click", () => {
@@ -87,10 +100,12 @@
                 if (operand == "") {
                     operator1 += buttonText
                     updateDisp(operator1)
+                    //debugger
                 }
                 else {
                     operator2 += buttonText
                     updateDisp(operator2)
+                    //debugger
                 }
                
             })
@@ -98,11 +113,18 @@
 
         document.querySelectorAll(".operands").forEach(button => {
             button.addEventListener("click", () => {
-                operand = button.textContent
+                //operand = button.textContent
                 if (operator1 != "" && operator2 != "") {
-                    operator1 = eval(operator1,operator2,operand)
-                    operand = ""
+                    //debugger
+                    operand = button.textContent
+                    operator1 = evalu(operator1,operator2,operand)
+                    updateDisp(operator1)
+                    //operand = ""
                     operator2 = ""
+                }
+                else if (operator1 == "" || operator2 == "") {
+                    operand = button.textContent
+                    //debugger
                 }
             })
         })
@@ -110,13 +132,13 @@
         let eq = document.querySelector(".equality")
         eq.addEventListener("click", ()=> {
             if (operator1 != "" && operator2 != "") {
-                eval(operator1,operator2,operand)
+                res = evalu(operator1,operator2,operand)
+                updateDisp(res)
         }})
 
         let ac = document.querySelector(".clear")
         ac.addEventListener("click", ()=> {
-            val = ""
-            updateDisp(val)
+            updateDisp(def)
             operand = ""
             operator1 = ""
             operator2 = ""
@@ -135,18 +157,27 @@
             return Number(a) / Number(b)
         }
 
-        function eval(o1,o2,exp) {
+        function evalu(o1,o2,exp) {
+            //debugger
             if (exp == "+") {
-                updateDisp(add(o1,o2))
+                return add(o1,o2)
             }
             else if (exp == "-") {
-                updateDisp(sub(o1,o2))
+                return sub(o1,o2)
             }
             else if (exp == "*") {
-                updateDisp(mul(o1,o2))
+                return mul(o1,o2)
             }
             else if (exp == "/") {
-                updateDisp(div(o1,o2))
+                if (o2 === "0") {
+                    //let ms = "You cheeky bastard";
+                    //updateDisp(ms);
+                    return "Not in this life";
+                }
+                else {
+                    return div(o1,o2)
+                }
+                
             }
         }
 
