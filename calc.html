@@ -85,6 +85,7 @@
         let operator2 = ""
         let operand = ""
         let def = "0"
+        let dc = 0
         
        
         const display = document.querySelector(".display")
@@ -96,35 +97,39 @@
         document.querySelectorAll(".number").forEach(button => {
             button.addEventListener("click", () => {
                 const buttonText = button.textContent;
-
+                dc += 1
+                if (dc < 15) { 
                 if (operand == "") {
                     operator1 += buttonText
                     updateDisp(operator1)
-                    //debugger
+                    debugger
                 }
                 else {
                     operator2 += buttonText
                     updateDisp(operator2)
-                    //debugger
+                    debugger
                 }
-               
+                }
             })
         })
 
         document.querySelectorAll(".operands").forEach(button => {
             button.addEventListener("click", () => {
-                //operand = button.textContent
-                if (operator1 != "" && operator2 != "") {
-                    //debugger
-                    operand = button.textContent
+                if (operator1 == "") {
+                    // Do nothing
+                }
+                else if (operator1 != "" && operator2 != "") {
+                    debugger
                     operator1 = evalu(operator1,operator2,operand)
                     updateDisp(operator1)
-                    //operand = ""
                     operator2 = ""
-                }
-                else if (operator1 == "" || operator2 == "") {
                     operand = button.textContent
-                    //debugger
+                    dc = 0
+                }
+                else if (operator2 == "") {
+                    operand = button.textContent
+                    dc = 0
+                    debugger
                 }
             })
         })
@@ -132,8 +137,20 @@
         let eq = document.querySelector(".equality")
         eq.addEventListener("click", ()=> {
             if (operator1 != "" && operator2 != "") {
-                res = evalu(operator1,operator2,operand)
+                let res = evalu(operator1,operator2,operand).toString()
+                if (res.length >= 15) {
+                    let rores = Number(res).toPrecision(9)
+                    updateDisp(rores)
+                    operator1 = rores
+                    operator2 = ""
+                    operand = ""
+                }
+                else {
                 updateDisp(res)
+                operator1 = res
+                operator2 = ""
+                operand = ""
+            }
         }})
 
         let ac = document.querySelector(".clear")
@@ -142,6 +159,7 @@
             operand = ""
             operator1 = ""
             operator2 = ""
+            dc = 0
         })
 
         function add(a,b) {
@@ -158,7 +176,7 @@
         }
 
         function evalu(o1,o2,exp) {
-            //debugger
+            debugger
             if (exp == "+") {
                 return add(o1,o2)
             }
@@ -170,8 +188,6 @@
             }
             else if (exp == "/") {
                 if (o2 === "0") {
-                    //let ms = "You cheeky bastard";
-                    //updateDisp(ms);
                     return "Not in this life";
                 }
                 else {
